@@ -35,6 +35,15 @@ const routes: Routes = [
         ]
       },
       {
+        path: 'pendientes',
+        children: [
+          {
+            path: '',
+            loadChildren: '../pendientes/pendientes.module#PendientesPageModule'
+          }
+        ]
+      },
+      {
         path: '',
         redirectTo: '/tabs/tab1',
         pathMatch: 'full'
@@ -48,10 +57,10 @@ const routes: Routes = [
   }
 ];
 
-@NgModule({
+@NgModule( {
   imports: [
-    RouterModule.forChild(routes)
+    RouterModule.forChild( routes )
   ],
-  exports: [RouterModule]
-})
-export class TabsPageRoutingModule {}
+  exports: [ RouterModule ]
+} )
+export class TabsPageRoutingModule { }
