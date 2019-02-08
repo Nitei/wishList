@@ -9,6 +9,8 @@ import { Lista } from 'src/models';
 } )
 export class PendientesPage implements OnInit {
 
+
+
   constructor ( public deseosService: DeseosService ) { }
 
   listaSeleccionada( lista: Lista ) {

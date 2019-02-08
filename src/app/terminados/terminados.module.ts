@@ -6,6 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { TerminadosPage } from './terminados.page';
+import { SharedModule } from '../shared/shared.module';
 
 const routes: Routes = [
   {
@@ -14,13 +15,14 @@ const routes: Routes = [
   }
 ];
 
-@NgModule({
+@NgModule( {
   imports: [
+    SharedModule,
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild( routes )
   ],
-  declarations: [TerminadosPage]
-})
-export class TerminadosPageModule {}
+  declarations: [ TerminadosPage ]
+} )
+export class TerminadosPageModule { }
