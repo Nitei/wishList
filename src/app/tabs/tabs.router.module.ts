@@ -26,6 +26,15 @@ const routes: Routes = [
         ]
       },
       {
+        path: 'agregar',
+        children: [
+          {
+            path: '',
+            loadChildren: '../agregar/agregar.module#AgregarPageModule'
+          }
+        ]
+      },
+      {
         path: '',
         redirectTo: '/tabs/pendientes',
         pathMatch: 'full'
