@@ -11,7 +11,12 @@ import { SharedModule } from '../shared/shared.module';
 const routes: Routes = [
   {
     path: '',
-    component: AgregarPage
+    component: AgregarPage,
+  },
+  {
+    path: ':titulo',
+    component: AgregarPage,
+
   }
 ];
 

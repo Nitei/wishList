@@ -1,5 +1,23 @@
-<app-header [titulo]="'Agregar'"></app-header>
+<app-header [titulo]="titulo"></app-header>
 
 <ion-content padding>
-  <h2>Agregar</h2>
+
+  <ion-list>
+    <ion-list-header>
+      Tareas por hacer
+    </ion-list-header>
+    <ion-item>
+      <ion-label position="floating">Nombre item</ion-label>
+      <ion-input [(ngModel)]="nombreItem" type="text" (keyup.enter)="agregarItem()"></ion-input>
+    </ion-item>
+
+  </ion-list>
+  <ion-list>
+    <ion-item class="fadeInDown" *ngFor="let item of lista">
+      <ion-icon name="square-outline" slot="start"></ion-icon>
+      <ion-label class="newItem">{{item.desc}}</ion-label>
+
+    </ion-item>
+  </ion-list>
+
 </ion-content>
