@@ -8,10 +8,24 @@ export class DeseosService {
 
   listas: Lista[] = [];
 
-  constructor () { }
+  constructor () {
+    this.cargarStorage();
+  }
+
+
+  guardarStorage() {
+    localStorage.setItem( 'itemLista', JSON.stringify( this.listas ) );
+  }
+
+  cargarStorage() {
+    if ( localStorage.getItem( 'itemLista' ) ) {
+      this.listas = JSON.parse( localStorage.getItem( 'itemLista' ) );
+    }
+  }
 
   agregarLista( lista: Lista ) {
     this.listas.push( lista );
+    this.guardarStorage();
   }
 
 

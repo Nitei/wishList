@@ -46,6 +46,7 @@ export class AgregarPage implements OnInit {
     console.log( item );
   }
 
+
   ngOnInit() {
     // this.lista.items.push( new ListaItem( 'Felicidad' ) );
     // this.lista.items.push( new ListaItem( 'Amor' ) );
