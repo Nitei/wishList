@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ListaItem, Lista } from 'src/models';
+import { ListaItem } from 'src/models';
 import { DeseosService } from '../servicios/deseos.service';
-
 @Component( {
   selector: 'app-agregar',
   templateUrl: './agregar.page.html',
@@ -32,9 +31,15 @@ export class AgregarPage implements OnInit {
       this.lista.push( nuevoItem );
       this.nombreItem = '';
     }
+    console.log( this.lista );
+  }
+
+  actualizaItem( item: ListaItem ) {
+    item.completado = !item.completado;
   }
 
   ngOnInit() {
+    this.lista.push( new ListaItem( 'Felicidad' ) );
   }
 
 }

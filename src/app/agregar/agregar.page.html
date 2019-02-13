@@ -4,7 +4,7 @@
 
   <ion-list>
     <ion-list-header>
-      Tareas por hacer
+      Agregar tarea:
     </ion-list-header>
     <ion-item>
       <ion-label position="floating">Nombre item</ion-label>
@@ -12,12 +12,26 @@
     </ion-item>
 
   </ion-list>
-  <ion-list>
-    <ion-item class="animated fadeInDown" *ngFor="let item of lista">
-      <ion-icon name="square-outline"></ion-icon>
-      <ion-label class="newItem">{{item.desc}}</ion-label>
 
-    </ion-item>
+  <ion-list *ngIf="lista.length > 0" class="animated fadeInDown">
+    <ion-list-header>
+      Tareas por hacer:
+    </ion-list-header>
+
+    <ion-item-sliding *ngFor="let item of lista">
+      <ion-item class="animated fadeInDown" (click)="actualizaItem(item)">
+        <ion-icon *ngIf="item.completado" name="checkbox-outline"></ion-icon>
+        <ion-icon *ngIf="!item.completado" name="square-outline"></ion-icon>
+        <ion-label class="newItem">{{item.desc}}</ion-label>
+      </ion-item>
+
+      <ion-item-options slot="end">
+        <ion-item-option color="danger">
+          13
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+
   </ion-list>
 
 </ion-content>
