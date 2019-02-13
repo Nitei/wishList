@@ -11,8 +11,6 @@ import { Router } from '@angular/router';
 } )
 export class PendientesPage implements OnInit {
 
-
-
   constructor (
     public deseosService: DeseosService,
     private alertController: AlertController,
@@ -20,6 +18,7 @@ export class PendientesPage implements OnInit {
   ) { }
 
   listaSeleccionada( lista: Lista ) {
+    this.route.navigate( [ '/tabs/agregar/', lista.titulo ] );
     console.log( lista );
   }
 
@@ -33,9 +32,10 @@ export class PendientesPage implements OnInit {
       }, {
         text: 'Agregar',
         handler: data => {
-          if ( data.titulo === '' ) { return; }
-          this.route.navigate( [ '/tabs/agregar/', data.titulo ] );
-          console.log( data );
+          if ( data.titulo !== '' ) {
+            this.route.navigate( [ '/tabs/agregar/', data.titulo ] );
+            console.log( data );
+          }
         }
       } ],
       inputs: [ {
@@ -46,7 +46,13 @@ export class PendientesPage implements OnInit {
     await alerta.present();
   }
 
+  borrarLista( item: Lista ) {
+    this.deseosService.listas.splice( this.deseosService.listas.indexOf( item ), 1 );
+    this.deseosService.guardarStorage();
+  }
+
   ngOnInit() {
+    console.log( this.deseosService.listas );
   }
 
 }
