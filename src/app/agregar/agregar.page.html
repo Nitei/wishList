@@ -13,12 +13,12 @@
 
   </ion-list>
 
-  <ion-list *ngIf="lista.length > 0" class="animated fadeInDown">
+  <ion-list *ngIf="lista.items.length != 0" class="animated fadeInDown">
     <ion-list-header>
       Tareas por hacer:
     </ion-list-header>
 
-    <ion-item class="animated fadeInDown" (click)="actualizaItem(item)" *ngFor="let item of lista">
+    <ion-item class="animated fadeInDown" (click)="actualizaItem(item)" *ngFor="let item of lista.items">
       <ion-icon *ngIf="item.completado" name="checkbox-outline"></ion-icon>
       <ion-icon *ngIf="!item.completado" name="square-outline"></ion-icon>
       <ion-label class="newItem">{{item.desc}}</ion-label>

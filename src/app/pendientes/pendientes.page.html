@@ -4,15 +4,16 @@
 
   <ion-img src="../../assets/imgs/pendientes.jpg"></ion-img>
 
-  <ion-item *ngFor="let lista of deseosService.listas" (click)="listaSeleccionada(lista)">
-    {{lista.titulo}}
-  </ion-item>
+  <ion-list>
+    <ion-item *ngFor="let lista of deseosService.listas" (click)="listaSeleccionada(lista)">
+      {{lista.titulo}}
+    </ion-item>
+  </ion-list>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button (click)="agregarLista()">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
-
 
 </ion-content>

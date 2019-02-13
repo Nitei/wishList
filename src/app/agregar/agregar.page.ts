@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ListaItem } from 'src/models';
+import { ListaItem, Lista } from 'src/models';
+import { DeseosService } from '../servicios/deseos.service';
 @Component( {
   selector: 'app-agregar',
   templateUrl: './agregar.page.html',
@@ -8,25 +9,29 @@ import { ListaItem } from 'src/models';
 } )
 export class AgregarPage implements OnInit {
 
-  titulo: ListaItem;
+  titulo: string;
 
-  lista: ListaItem[] = [];
-  nombreItem = '';
+  lista: Lista;
+  nombreItem: string;
 
   constructor (
-    private route: ActivatedRoute ) {
+    private route: ActivatedRoute, private deseosService: DeseosService ) {
     this.route.params.subscribe( ( data: any ) => {
       this.titulo = data[ 'titulo' ];
+
+      this.lista = new Lista( this.titulo );
+      this.deseosService.agregarLista( this.lista );
+
     } );
   }
 
   agregarItem() {
 
-    if ( this.nombreItem.length === 0 ) {
+    if ( this.nombreItem === '' ) {
       return;
     } else {
       const nuevoItem = new ListaItem( this.nombreItem );
-      this.lista.push( nuevoItem );
+      this.lista.items.push( nuevoItem );
       this.nombreItem = '';
     }
     console.log( this.lista );
@@ -37,12 +42,13 @@ export class AgregarPage implements OnInit {
   }
 
   borrarItem( item: number ) {
-    this.lista.splice( item, 1 );
+    this.lista.items.splice( item, 1 );
     console.log( item );
   }
 
   ngOnInit() {
-    this.lista.push( new ListaItem( 'Felicidad' ) );
+    // this.lista.items.push( new ListaItem( 'Felicidad' ) );
+    // this.lista.items.push( new ListaItem( 'Amor' ) );
   }
 
 }
