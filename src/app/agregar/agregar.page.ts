@@ -10,6 +10,7 @@ import { DeseosService } from '../servicios/deseos.service';
 export class AgregarPage implements OnInit {
 
   titulo: string;
+  indexOfList: number;
 
   lista: Lista;
   nombreItem: string;
@@ -19,26 +20,43 @@ export class AgregarPage implements OnInit {
     this.route.params.subscribe( ( data: any ) => {
       this.titulo = data[ 'titulo' ];
 
-      this.lista = new Lista( this.titulo );
-      this.deseosService.agregarLista( this.lista );
-
+      if ( this.deseosService.existInListas( this.titulo ) ) {
+        // If the list not exist we create an new list and push into the array of lists.
+        this.lista = new Lista( this.titulo );
+        this.deseosService.agregarLista( this.lista );
+      } else {
+        // If the list exist we find it in the array of list with the index passed in the url by param.
+        this.indexOfList = data[ 'lista' ];
+        this.lista = this.deseosService.listas[ this.indexOfList ];
+      }
+      console.log( this.lista );
     } );
+  }
+
+  di() {
+    console.log( this.deseosService.listas.length );
+    console.log( this.lista );
   }
 
   agregarItem() {
 
-    if ( this.nombreItem === '' ) {
-      return;
-    } else {
+    if ( this.nombreItem !== '' ) {
       const nuevoItem = new ListaItem( this.nombreItem );
-      this.lista.items.push( nuevoItem );
+      if ( this.indexOfList === undefined ) {
+        // If the list not exist we will find the lastone list in the array and we push the new item.
+        this.deseosService.listas[ this.deseosService.listas.length - 1 ].items.push( nuevoItem );
+      } else {
+        // if the list exist we find the list in the array by index and push the new item.
+        this.deseosService.listas[ this.indexOfList ].items.push( nuevoItem );
+      }
       this.nombreItem = '';
+      this.deseosService.guardarStorage();
     }
-    console.log( this.lista );
   }
 
   actualizaItem( item: ListaItem ) {
     item.completado = !item.completado;
+    this.deseosService.guardarStorage();
   }
 
   borrarItem( item: number ) {
@@ -48,8 +66,7 @@ export class AgregarPage implements OnInit {
 
 
   ngOnInit() {
-    // this.lista.items.push( new ListaItem( 'Felicidad' ) );
-    // this.lista.items.push( new ListaItem( 'Amor' ) );
+
   }
 
 }

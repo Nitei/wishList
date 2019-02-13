@@ -10,16 +10,18 @@ import { Router } from '@angular/router';
   styleUrls: [ './pendientes.page.scss' ],
 } )
 export class PendientesPage implements OnInit {
+  listas: Lista[];
 
   constructor (
     public deseosService: DeseosService,
     private alertController: AlertController,
     private route: Router
-  ) { }
+  ) {
+    this.listas = this.deseosService.listas;
+  }
 
-  listaSeleccionada( lista: Lista ) {
-    this.route.navigate( [ '/tabs/agregar/', lista.titulo ] );
-    console.log( lista );
+  listaSeleccionada( lista: Lista, idx: number ) {
+    this.route.navigate( [ '/tabs/agregar/', lista.titulo, idx ] );
   }
 
   async agregarLista() {
@@ -31,10 +33,9 @@ export class PendientesPage implements OnInit {
         text: 'Cancelar',
       }, {
         text: 'Agregar',
-        handler: data => {
-          if ( data.titulo !== '' ) {
-            this.route.navigate( [ '/tabs/agregar/', data.titulo ] );
-            console.log( data );
+        handler: lista => {
+          if ( this.deseosService.existInListas( lista.titulo ) ) {
+            this.route.navigate( [ '/tabs/agregar/', lista.titulo ] );
           }
         }
       } ],

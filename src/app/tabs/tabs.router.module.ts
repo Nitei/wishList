@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TabsPage } from './tabs.page';
 
-const routes: Routes = [
+export const routes: Routes = [
   {
     path: 'tabs',
     component: TabsPage,
@@ -30,6 +30,10 @@ const routes: Routes = [
         children: [
           {
             path: ':titulo',
+            loadChildren: '../agregar/agregar.module#AgregarPageModule'
+          },
+          {
+            path: ':titulo/:lista',
             loadChildren: '../agregar/agregar.module#AgregarPageModule'
           }
         ]

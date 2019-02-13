@@ -6,12 +6,11 @@ import { Lista } from 'src/models/index';
 } )
 export class DeseosService {
 
-  listas: Lista[] = [];
+  listas: Lista[];
 
   constructor () {
     this.cargarStorage();
   }
-
 
   guardarStorage() {
     localStorage.setItem( 'itemLista', JSON.stringify( this.listas ) );
@@ -28,5 +27,16 @@ export class DeseosService {
     this.guardarStorage();
   }
 
+  // Return false if the title exist in deseosService.listas
+  existInListas( titulo: string ) {
+    let res = true;
+    for ( const index of this.listas ) {
+      if ( titulo === '' || index.titulo === titulo ) {
+        res = false;
+        console.log( `Existe en la lista ${ titulo }` );
+      }
+    }
+    return res;
+  }
 
 }
