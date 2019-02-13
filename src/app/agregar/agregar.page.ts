@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ListaItem } from 'src/models';
-import { DeseosService } from '../servicios/deseos.service';
 @Component( {
   selector: 'app-agregar',
   templateUrl: './agregar.page.html',
@@ -15,8 +14,7 @@ export class AgregarPage implements OnInit {
   nombreItem = '';
 
   constructor (
-    private route: ActivatedRoute,
-    private deseosService: DeseosService ) {
+    private route: ActivatedRoute ) {
     this.route.params.subscribe( ( data: any ) => {
       this.titulo = data[ 'titulo' ];
     } );
@@ -36,6 +34,11 @@ export class AgregarPage implements OnInit {
 
   actualizaItem( item: ListaItem ) {
     item.completado = !item.completado;
+  }
+
+  borrarItem( item: number ) {
+    this.lista.splice( item, 1 );
+    console.log( item );
   }
 
   ngOnInit() {
