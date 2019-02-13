@@ -33,8 +33,8 @@ export class PendientesPage implements OnInit {
       }, {
         text: 'Agregar',
         handler: data => {
-          if ( data.titulo === 0 ) { return; }
-          this.route.navigate( [ 'agregar/', data.titulo ] );
+          if ( data.titulo === '' ) { return; }
+          this.route.navigate( [ '/tabs/agregar/', data.titulo ] );
           console.log( data );
         }
       } ],

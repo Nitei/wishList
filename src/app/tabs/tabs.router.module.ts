@@ -29,7 +29,7 @@ const routes: Routes = [
         path: 'agregar',
         children: [
           {
-            path: '',
+            path: ':titulo',
             loadChildren: '../agregar/agregar.module#AgregarPageModule'
           }
         ]

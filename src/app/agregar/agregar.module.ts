@@ -12,11 +12,6 @@ const routes: Routes = [
   {
     path: '',
     component: AgregarPage,
-  },
-  {
-    path: ':titulo',
-    component: AgregarPage,
-
   }
 ];
 
