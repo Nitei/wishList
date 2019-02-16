@@ -20,6 +20,10 @@ export const routes: Routes = [
         path: 'terminados',
         children: [
           {
+            path: ':titulo/:lista',
+            loadChildren: '../terminados/terminados.module#TerminadosPageModule'
+          },
+          {
             path: '',
             loadChildren: '../terminados/terminados.module#TerminadosPageModule'
           }
