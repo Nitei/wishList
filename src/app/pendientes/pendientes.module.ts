@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { PendientesPage } from './pendientes.page';
 import { SharedModule } from '../shared/shared.module';
+// import { FiltroCompletadoPipe } from '../pipes/filtro-completado.pipe';
 
 const routes: Routes = [
   {

@@ -5,8 +5,11 @@
   <ion-img src="../../assets/imgs/pendientes.jpg"></ion-img>
 
   <ion-list *ngIf="deseosService.listas.length > 0">
-    <ion-item *ngFor="let lista of deseosService.listas; let i = index;" (click)="listaSeleccionada(lista, i)">
-      <ion-label>{{lista.titulo}}</ion-label>
+    <ion-item *ngFor="let lista of deseosService.listas | filtroCompletado: false; let i = index;"
+      (click)="listaSeleccionada(lista, i)">
+      <ion-label>{{lista.titulo}}
+      </ion-label>
+      <ion-note slot="end" color="tertiary">{{lista.items.length}}</ion-note>
       <ion-icon slot="end" name="trash" (click)="borrarLista(lista)"></ion-icon>
     </ion-item>
   </ion-list>

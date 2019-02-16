@@ -3,10 +3,12 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
+import { FiltroCompletadoPipe } from './pipes/filtro-completado.pipe';
 
 @NgModule( {
   declarations: [
-    HeaderComponent
+    HeaderComponent,
+    FiltroCompletadoPipe
   ],
   entryComponents: [
     HeaderComponent
@@ -16,6 +18,6 @@ import { FormsModule } from '@angular/forms';
     FormsModule,
     CommonModule
   ],
-  exports: [ HeaderComponent ]
+  exports: [ HeaderComponent, FiltroCompletadoPipe ]
 } )
 export class SharedModule { }
