@@ -29,13 +29,7 @@ export class AgregarPage implements OnInit {
         this.indexOfList = data[ 'lista' ];
         this.lista = this.deseosService.listas[ this.indexOfList ];
       }
-      console.log( this.lista );
     } );
-  }
-
-  di() {
-    console.log( this.deseosService.listas.length );
-    console.log( this.lista );
   }
 
   agregarItem() {
@@ -56,6 +50,21 @@ export class AgregarPage implements OnInit {
 
   actualizaItem( item: ListaItem ) {
     item.completado = !item.completado;
+
+    const pendientes = this.lista.items.filter( itemData => {
+      return !itemData.completado;
+    } ).length;
+
+    if ( pendientes === 0 ) {
+      this.lista.terminada = true;
+      this.lista.terminadaEn = new Date();
+      console.log( this.lista );
+    } else {
+      this.lista.terminada = false;
+      this.lista.terminadaEn = null;
+      console.log( this.lista );
+    }
+
     this.deseosService.guardarStorage();
   }
 
