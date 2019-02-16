@@ -5,9 +5,9 @@
   <ion-img src="../../assets/imgs/pendientes.jpg"></ion-img>
 
   <ion-list *ngIf="deseosService.listas.length > 0">
-    <ion-item *ngFor="let lista of deseosService.listas; let i = index;" (click)="listaSeleccionada(lista, i)"
-      [hidden]="lista.terminada">
-      <ion-label>{{lista.titulo}}
+    <ion-item *ngFor="let lista of deseosService.listas; let i = index;" [hidden]="lista.terminada">
+      <ion-icon slot="start" name="create" (click)="editarLista(lista)"></ion-icon>
+      <ion-label (click)="listaSeleccionada(lista, i)">{{lista.titulo}}
       </ion-label>
       <ion-note slot="end" color="tertiary">{{lista.items.length}}</ion-note>
       <ion-icon slot="end" name="trash" (click)="borrarLista(lista)"></ion-icon>

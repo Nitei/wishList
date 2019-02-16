@@ -24,6 +24,30 @@ export class PendientesPage implements OnInit {
     this.route.navigate( [ '/tabs/agregar/', lista.titulo, idx ] );
   }
 
+  async editarLista( lista: Lista ) {
+    const editarNombre = await this.alertController.create( {
+      header: 'Cambiar nombre',
+      subHeader: 'Nuevo nombre',
+      message: 'Nuevo nombre de la lista',
+      buttons: [ {
+        text: 'Cancelar',
+      }, {
+        text: 'Guardar',
+        handler: data => {
+          if ( data[ 0 ] !== '' ) {
+            console.log( data );
+            lista.titulo = data[ 0 ];
+            this.deseosService.guardarStorage();
+          }
+        }
+      } ],
+      inputs: [ {
+        placeholder: 'Nuevo nombre de la lista'
+      } ]
+    } );
+    await editarNombre.present();
+  }
+
   async agregarLista() {
     const alerta = await this.alertController.create( {
       header: 'Nueva lista',
