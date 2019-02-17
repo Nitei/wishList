@@ -58,7 +58,7 @@ export class PendientesPage implements OnInit {
       }, {
         text: 'Agregar',
         handler: lista => {
-          if ( this.deseosService.existInListas( lista.titulo ) ) {
+          if ( this.deseosService.newListInListas( lista.titulo ) ) {
             this.route.navigate( [ '/tabs/agregar/', lista.titulo ] );
           }
         }

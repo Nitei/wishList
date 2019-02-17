@@ -3,25 +3,25 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TerminadosPage } from './terminados.page';
 
-describe('TerminadosPage', () => {
+xdescribe( 'TerminadosPage', () => {
   let component: TerminadosPage;
   let fixture: ComponentFixture<TerminadosPage>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
+  beforeEach( async( () => {
+    TestBed.configureTestingModule( {
       declarations: [ TerminadosPage ],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA],
-    })
-    .compileComponents();
-  }));
+      schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
+    } )
+      .compileComponents();
+  } ) );
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(TerminadosPage);
+  beforeEach( () => {
+    fixture = TestBed.createComponent( TerminadosPage );
     component = fixture.componentInstance;
     fixture.detectChanges();
-  });
+  } );
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+  it( 'should create', () => {
+    expect( component ).toBeTruthy();
+  } );
+} );

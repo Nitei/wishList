@@ -27,14 +27,21 @@ export class DeseosService {
     this.guardarStorage();
   }
 
-  // Return false if the title exist in deseosService.listas
-  existInListas( titulo: string ) {
+  // true if is a new List into this.listas.
+  // false if are repeat into this.listas.
+  // false if the title is void.
+  newListInListas( titulo: string ) {
     let res = true;
     for ( const index of this.listas ) {
-      if ( titulo === '' || index.titulo === titulo ) {
+      if ( index.titulo === titulo ) {
         res = false;
-        console.log( `Existe en la lista ${ titulo }` );
+        console.log( `Existe en la lista: ${ titulo }` );
+        break;
       }
+    }
+    if ( titulo === '' ) {
+      res = false;
+      console.error( 'El título no puede estar vacio' );
     }
     return res;
   }

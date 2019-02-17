@@ -20,7 +20,7 @@ export class AgregarPage implements OnInit {
     this.route.params.subscribe( ( data: any ) => {
       this.titulo = data[ 'titulo' ];
 
-      if ( this.deseosService.existInListas( this.titulo ) ) {
+      if ( this.deseosService.newListInListas( this.titulo ) ) {
         // If the list not exist we create an new list and push into the array of lists.
         this.lista = new Lista( this.titulo );
         this.deseosService.agregarLista( this.lista );
@@ -31,7 +31,6 @@ export class AgregarPage implements OnInit {
       }
     } );
   }
-
   agregarItem() {
 
     if ( this.nombreItem !== '' ) {
