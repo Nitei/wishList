@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ListaItem, Lista } from 'src/models';
 import { DeseosService } from '../servicios/deseos.service';
+import { AlertController } from '@ionic/angular';
 @Component( {
   selector: 'app-agregar',
   templateUrl: './agregar.page.html',
@@ -16,7 +17,7 @@ export class AgregarPage implements OnInit {
   nombreItem: string;
 
   constructor (
-    private route: ActivatedRoute, private deseosService: DeseosService ) {
+    private route: ActivatedRoute, private deseosService: DeseosService, private alertController: AlertController ) {
     this.route.params.subscribe( ( data: any ) => {
       this.titulo = data[ 'titulo' ];
 
@@ -57,19 +58,45 @@ export class AgregarPage implements OnInit {
     if ( pendientes === 0 ) {
       this.lista.terminada = true;
       this.lista.terminadaEn = new Date();
-      console.log( this.lista );
+      // console.log( this.lista );
     } else {
       this.lista.terminada = false;
       this.lista.terminadaEn = null;
-      console.log( this.lista );
+      // console.log( this.lista );
     }
-
     this.deseosService.guardarStorage();
   }
 
   borrarItem( item: number ) {
     this.lista.items.splice( item, 1 );
     console.log( item );
+  }
+
+
+  async editarLista( listaItemsItem: Lista ) {
+    console.log( listaItemsItem );
+
+    const editarNombre = await this.alertController.create( {
+      header: 'Cambiar nombre',
+      subHeader: 'Nuevo nombre',
+      message: 'Nuevo nombre del item',
+      buttons: [ {
+        text: 'Cancelar',
+      }, {
+        text: 'Guardar',
+        handler: nuevoNombre => {
+          if ( nuevoNombre[ 0 ] !== '' ) {
+            console.log( nuevoNombre );
+            listaItemsItem[ 'desc' ] = nuevoNombre[ 0 ];
+            this.deseosService.guardarStorage();
+          }
+        }
+      } ],
+      inputs: [ {
+        placeholder: 'Nuevo nombre de la lista'
+      } ]
+    } );
+    await editarNombre.present();
   }
 
 

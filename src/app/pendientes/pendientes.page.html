@@ -4,7 +4,7 @@
 
   <ion-img src="../../assets/imgs/pendientes.jpg"></ion-img>
 
-  <ion-list *ngIf="deseosService.listas.length > 0">
+  <ion-list *ngIf="deseosService.listas !== undefined ">
     <ion-item *ngFor="let lista of deseosService.listas; let i = index;" [hidden]="lista.terminada">
       <ion-icon slot="start" name="create" (click)="editarLista(lista)"></ion-icon>
       <ion-label (click)="listaSeleccionada(lista, i)">{{lista.titulo}}

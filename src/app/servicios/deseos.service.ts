@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Lista } from 'src/models/index';
-
+const enum booleans {
+  Yes = 1,
+  No = -1
+}
 @Injectable( {
   providedIn: 'root'
 } )

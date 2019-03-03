@@ -19,10 +19,11 @@
       Tareas por hacer:
     </ion-list-header>
 
-    <ion-item class="animated fadeInDown" (click)="actualizaItem(item)" *ngFor="let item of lista.items">
+    <ion-item class="animated fadeInDown" *ngFor="let item of lista.items">
+      <ion-icon slot="start" name="create" (click)="editarLista(item)"></ion-icon>
       <ion-icon *ngIf="item.completado" name="checkbox-outline"></ion-icon>
       <ion-icon *ngIf="!item.completado" name="square-outline"></ion-icon>
-      <ion-label class="newItem">{{item.desc}}</ion-label>
+      <ion-label class="newItem" (click)="actualizaItem(item)">{{item.desc}}</ion-label>
       <ion-icon slot="end" name="trash" (click)="borrarItem(item)"></ion-icon>
     </ion-item>
 
